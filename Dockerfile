@@ -1,4 +1,4 @@
-﻿FROM python:2.7
+﻿FROM registry.cn-hangzhou.aliyuncs.com/pythonhub/python
 MAINTAINER Angel_Kitty <angelkitty6698@gmail.com>
 COPY . /app
 WORKDIR /app
