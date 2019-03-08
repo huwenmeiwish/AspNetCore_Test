@@ -1,4 +1,4 @@
-﻿FROM docker.io/microsoft/dotnet:2.2-sdk
+﻿FROM docker.io/microsoft/dotnet:latest
 WORKDIR /app
 COPY ./ ./
 EXPOSE 5000/tcp
