@@ -9,7 +9,7 @@ RUN     apt-get install -y nginx
 RUN     apt-get install -y vim	
 RUN     apt-get install -y procps	#安装ps命令
 RUN     echo 'HI!WARRIOR is the champion!!!' > /var/www/html/index.nginx-debian.html
-EXPOSE  8081	#开放8081端口
+EXPOSE  9000	#开放9000端口
 COPY    /file/kubernetes.tar.gz /mnt/
 #CMD    service nginx start && nginx -g "daemon off;"
 ENTRYPOINT [ "/usr/sbin/nginx", "-g", "daemon off;" ]
