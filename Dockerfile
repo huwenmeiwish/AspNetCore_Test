@@ -1,7 +1,7 @@
-﻿FROM hello-world
-MAINTAINER Angel_Kitty <angelkitty6698@gmail.com>
-COPY . /app
+﻿FROM microsoft/dotnet:2.2-sdk
 WORKDIR /app
-RUN pip install -r requirements.txt
-EXPOSE 5000ENTRYPOINT ["python"]
-CMD ["app.py"]
+COPY ./ ./
+EXPOSE 5000/tcp
+CMD ["dotnet", "myWebApi.dll"]
+
+
