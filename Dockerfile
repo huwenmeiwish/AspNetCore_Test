@@ -1,18 +1,15 @@
-﻿FROM debian:jessie
-
-MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
-
-ENV NGINX_VERSION 1.10.1-1~jessie
-
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 && \
-echo "deb http://nginx.org/package/debian/ jessie nginx" >> /etc/apt/source.list && apt-get update && \
-apt-get install --no-install-recommends --no-install-suggests -y ca-certificates nginx=$(NGINX_VERSION) \
-nginx-module-xslt nginx-module-geoip nginx-module-image-filter nginx-module-perl nginx-module-njs gettext-base && \
-rm -rf /var/lib/apt/lists/*
-
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/err.log
-
-EXPOSE 80 443
-
-CMD ["nginx","-g","daemon off;"]
+﻿############################################################
+# Dockerfile to build Nginx container images
+# Based on Debian
+############################################################
+FROM    debian:latest
+MAINTAINER      ChrisChan "Chris@jjfjj.com"
+RUN     apt-get update
+RUN     apt-get install -y nginx	
+RUN     apt-get install -y vim	
+RUN     apt-get install -y procps	#安装ps命令
+RUN     echo 'HI!WARRIOR is the champion!!!' > /var/www/html/index.nginx-debian.html
+EXPOSE  8080	#开放8080端口
+COPY    /file/kubernetes.tar.gz /mnt/
+#CMD    service nginx start && nginx -g "daemon off;"
+ENTRYPOINT [ "/usr/sbin/nginx", "-g", "daemon off;" ]
